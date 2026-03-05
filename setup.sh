@@ -7,11 +7,14 @@ if [ ! -d .git ]; then
     exit 1
 fi
 
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # Create hooks directory if it doesn't exist
 mkdir -p .git/hooks
 
 # Copy hooks from template
-cp .git-template/* .git/hooks/
+cp "$SCRIPT_DIR/.git-template"/* .git/hooks/
 
 # Make hooks executable
 chmod +x .git/hooks/ableton-clean
